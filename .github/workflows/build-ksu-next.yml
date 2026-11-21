@@ -54,7 +54,7 @@ jobs:
   build:
     name: "KernelSU-Next ${{ inputs.kernel_version }}.${{ inputs.sub_level }}"
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     env:
       KSU_VARIANT: KernelSU-Next
       KSU_DIR: KernelSU-Next
@@ -411,7 +411,7 @@ jobs:
       working-directory: ${{ env.KERNEL_ROOT }}
       run: |
         BUILD_RC=0
-        LTO_MODE=thin
+        LTO_MODE=full
         [[ "$ANDROID_VER" == android16* || "$KERNEL_VER" == "6.12" ]] && LTO_MODE=none
         if [ -f "build/build.sh" ]; then
           KMI_SYMBOL_LIST_STRICT_MODE=0 HOSTLD=/usr/bin/ld.lld GKI_DEFCONFIG_FRAGMENT="$DEFCONFIG_FRAGMENT" LTO=$LTO_MODE BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh || BUILD_RC=$?
