@@ -42,7 +42,7 @@ on:
         default: true
       add_perf_patches:
         type: boolean
-        default: true
+        default: false
       sukisu_commit:
         type: string
         default: ""
