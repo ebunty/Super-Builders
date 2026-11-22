@@ -1,3 +1,10 @@
+ - name: Add Swap Space for Full LTO
+   run: |
+     sudo fallocate -l 16G /swapfile
+     sudo chmod 600 /swapfile
+     sudo mkswap /swapfile
+     sudo swapon /swapfile
+     free -h
 name: Build KernelSU-Next
 
 permissions:
